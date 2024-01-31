@@ -6,8 +6,8 @@ An app that enables scrolling functionality in Simulator.app.
 - No more dragging with the trackpad on Simulator.app!
 
 # Download
-## Latest
-
+## Latest Relase
+https://github.com/nhiroyasu/ScrollableSimulator/releases
 
 ## AppStore
 Coming soon...
