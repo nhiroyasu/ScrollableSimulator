@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -140,8 +141,12 @@
             <objects>
                 <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="htd-CI-8GM" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="Setting" identifier="" image="gearshape" catalog="system" id="d5B-gu-Qyp"/>
-                        <tabViewItem label="About" identifier="" image="questionmark.circle" catalog="system" id="vf5-RN-QVW"/>
+                        <tabViewItem label="Setting" identifier="" id="d5B-gu-Qyp">
+                            <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
+                        </tabViewItem>
+                        <tabViewItem label="About" identifier="" id="vf5-RN-QVW">
+                            <imageReference key="image" image="questionmark.circle" catalog="system" symbolScale="large"/>
+                        </tabViewItem>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="prv-uL-Ixr">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -326,7 +331,7 @@
     </scenes>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>
-        <image name="gearshape" catalog="system" width="16" height="16"/>
-        <image name="questionmark.circle" catalog="system" width="15" height="15"/>
+        <image name="gearshape" catalog="system" width="21" height="21"/>
+        <image name="questionmark.circle" catalog="system" width="20" height="20"/>
     </resources>
 </document>
