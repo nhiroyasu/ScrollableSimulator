@@ -17,6 +17,8 @@ class AppService {
         }
     }
 
+    func didBecomeActive() {}
+
     func terminate() {
         scrollableSimulator?.deactivate()
     }

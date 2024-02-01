@@ -8,6 +8,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         appService.initialize()
     }
 
+    func applicationDidBecomeActive(_ notification: Notification) {
+        appService.didBecomeActive()
+    }
+
     func applicationWillTerminate(_ aNotification: Notification) {
         appService.terminate()
     }

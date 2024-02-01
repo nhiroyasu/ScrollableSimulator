@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="CTg-AR-Cl4">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -22,7 +23,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="CTg-AR-Cl4" kind="show" id="aaJ-Dr-mtR"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -55,23 +60,42 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="File" id="dMs-cI-mzQ">
+                            <menuItem title="File" id="hEc-hV-cp8">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="File" id="5sV-tE-eNh">
+                                    <items>
+                                        <menuItem title="Close" keyEquivalent="w" id="Tbk-93-KiM">
+                                            <connections>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="VId-KW-3gz"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
-                            <menuItem title="Edit" id="5QF-Oa-p0T">
+                            <menuItem title="Window" id="o5d-so-zWL">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Format" id="jxT-CU-nIS">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="View" id="H8h-7b-M4v">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Window" id="aUF-d1-5bR">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Help" id="wpr-3q-Mcd">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="0Ds-pb-y7e">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="pLp-wy-qhV">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="1eI-4O-JNW"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom" id="ytW-ob-4Nd">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="performZoom:" target="Ady-hI-5gd" id="N7B-cg-lsv"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="R6o-c8-3aW"/>
+                                        <menuItem title="Bring All to Front" id="Mt5-He-OKM">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="jBr-EU-O0P"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                         </items>
                     </menu>
@@ -79,11 +103,230 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ScrollableSimulator" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Scrollable_Simulator" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="-32" y="-309"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="lpT-4Y-fhy">
+            <objects>
+                <windowController storyboardIdentifier="main" showSeguePresentationStyle="single" id="CTg-AR-Cl4" sceneMemberID="viewController">
+                    <window key="window" title="Scrollable Simulator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ewh-JT-qi6">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <rect key="contentRect" x="604" y="462" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
+                        <value key="minSize" type="size" width="480" height="270"/>
+                        <value key="maxSize" type="size" width="480" height="270"/>
+                        <view key="contentView" id="Nut-bQ-wiA">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="CTg-AR-Cl4" id="tJe-KC-aEI"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="htd-CI-8GM" kind="relationship" relationship="window.shadowedContentViewController" id="0AA-mS-uIf"/>
+                    </connections>
+                </windowController>
+                <customObject id="DM2-mH-ptK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-32" y="311"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="egA-nX-CFQ">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="htd-CI-8GM" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="Setting" identifier="" image="gearshape" catalog="system" id="d5B-gu-Qyp"/>
+                        <tabViewItem label="About" identifier="" image="questionmark.circle" catalog="system" id="vf5-RN-QVW"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="prv-uL-Ixr">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="htd-CI-8GM" id="2FS-j8-7fN"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="prv-uL-Ixr" id="eey-yH-S86"/>
+                        <segue destination="k5C-HS-6S0" kind="relationship" relationship="tabItems" id="QU4-3u-oAZ"/>
+                        <segue destination="gbj-7p-Vbf" kind="relationship" relationship="tabItems" id="Gzr-vR-DG1"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="DUZ-EZ-0Pd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-33" y="807"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="hOs-hk-GDZ">
+            <objects>
+                <viewController title="Settings" id="k5C-HS-6S0" customClass="SettingViewController" customModule="Scrollable_Simulator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="2UE-9r-tdM">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="YHN-44-oeH" userLabel="Container View">
+                                <rect key="frame" x="16" y="16" width="418" height="268"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVw-D3-jWl">
+                                        <rect key="frame" x="0.0" y="252" width="418" height="16"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i4r-hE-fJJ">
+                                                <rect key="frame" x="-2" y="-1" width="119" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Launch at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zfV-ho-lOU">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <binding destination="k5C-HS-6S0" name="value" keyPath="launchAtLogin.isEnabled" id="Qvm-vb-SJ2"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zVw-D3-jWl" firstAttribute="leading" secondItem="YHN-44-oeH" secondAttribute="leading" id="8zI-gb-CDl"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zVw-D3-jWl" secondAttribute="bottom" id="Xqe-Hd-N4I"/>
+                                    <constraint firstAttribute="trailing" secondItem="zVw-D3-jWl" secondAttribute="trailing" id="cvA-Tn-9W0"/>
+                                    <constraint firstItem="zVw-D3-jWl" firstAttribute="top" secondItem="YHN-44-oeH" secondAttribute="top" id="q7A-vz-377"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="YHN-44-oeH" firstAttribute="leading" secondItem="2UE-9r-tdM" secondAttribute="leading" constant="16" id="DFF-i3-6Jn"/>
+                            <constraint firstAttribute="trailing" secondItem="YHN-44-oeH" secondAttribute="trailing" constant="16" id="Mok-rc-RqL"/>
+                            <constraint firstItem="YHN-44-oeH" firstAttribute="top" secondItem="2UE-9r-tdM" secondAttribute="top" constant="16" id="fkf-r5-1XX"/>
+                            <constraint firstAttribute="bottom" secondItem="YHN-44-oeH" secondAttribute="bottom" constant="16" id="u5u-pk-1aj"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="4ut-Hw-ymF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="AUI-2G-cqe"/>
+            </objects>
+            <point key="canvasLocation" x="722" y="588"/>
+        </scene>
+        <!--Abount-->
+        <scene sceneID="vdI-L6-f9z">
+            <objects>
+                <viewController title="Abount" id="gbj-7p-Vbf" customClass="AboutViewController" customModule="Scrollable_Simulator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="vMY-mZ-an8">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P4z-9d-nis">
+                                <rect key="frame" x="147" y="80" width="157" height="141"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mAU-as-o8l">
+                                        <rect key="frame" x="0.0" y="50" width="157" height="91"/>
+                                        <subviews>
+                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXC-Nv-o6g">
+                                                <rect key="frame" x="46" y="27" width="64" height="64"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="wXC-Nv-o6g" secondAttribute="height" multiplier="1:1" id="UVs-fI-adc"/>
+                                                    <constraint firstAttribute="width" constant="64" id="VCc-ZT-tna"/>
+                                                </constraints>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="1ad-ig-jmO"/>
+                                            </imageView>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WAI-RH-Ins">
+                                                <rect key="frame" x="-2" y="0.0" width="161" height="19"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Scrollable Simulator" id="f3P-6f-XLY">
+                                                    <font key="font" metaFont="systemBold" size="16"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R9M-aQ-NGI">
+                                        <rect key="frame" x="2" y="0.0" width="153" height="34"/>
+                                        <subviews>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="omz-Kw-rfK">
+                                                <rect key="frame" x="56" y="19" width="40" height="15"/>
+                                                <subviews>
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HbG-r8-Lf9" customClass="LinkLabel" customModule="Scrollable_Simulator" customModuleProvider="target">
+                                                        <rect key="frame" x="-2" y="0.0" width="44" height="15"/>
+                                                        <gestureRecognizers>
+                                                            <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="t3z-bn-OD8">
+                                                                <connections>
+                                                                    <action selector="didClickGitHubLabel:" target="gbj-7p-Vbf" id="LB1-jU-mn2"/>
+                                                                </connections>
+                                                            </clickGestureRecognizer>
+                                                        </gestureRecognizers>
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="GitHub" id="8NL-Qh-NS8">
+                                                            <font key="font" metaFont="system" size="12"/>
+                                                            <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uZ5-uC-I86">
+                                                <rect key="frame" x="-2" y="0.0" width="157" height="15"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="© 2024 Hiroyasu Niitsuma " id="c54-jQ-YCK">
+                                                    <font key="font" metaFont="system" size="12"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="P4z-9d-nis" firstAttribute="centerX" secondItem="vMY-mZ-an8" secondAttribute="centerX" id="981-Kz-eKI"/>
+                            <constraint firstItem="P4z-9d-nis" firstAttribute="centerY" secondItem="vMY-mZ-an8" secondAttribute="centerY" id="dZU-vo-iIc"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="UL6-Af-yMx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="1026"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSApplicationIcon" width="32" height="32"/>
+        <image name="gearshape" catalog="system" width="16" height="16"/>
+        <image name="questionmark.circle" catalog="system" width="15" height="15"/>
+    </resources>
 </document>
