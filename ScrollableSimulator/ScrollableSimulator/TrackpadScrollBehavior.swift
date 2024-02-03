@@ -5,7 +5,7 @@ class TrackpadScrollBehavior {
     private var scrollEventQueue: [CGEvent] = []
     private var additionalDraggedPosition: CGPoint = .zero
 
-    func mutateForDragging(
+    func imitateDragging(
         proxy: CGEventTapProxy,
         type: CGEventType,
         event mutableEvent: CGEvent,

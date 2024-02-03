@@ -26,6 +26,7 @@
 		4FEF63592B6BDCD500BA2032 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF63582B6BDCD500BA2032 /* AboutViewController.swift */; };
 		4FEF635C2B6BDE7A00BA2032 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4FEF635B2B6BDE7A00BA2032 /* LaunchAtLogin */; };
 		4FEF635F2B6BDF9200BA2032 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF635E2B6BDF9200BA2032 /* SettingViewController.swift */; };
+		4FEF63612B6E043E00BA2032 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF63602B6E043E00BA2032 /* UserDefaults+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		4FEF63562B6BDC8F00BA2032 /* LinkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkLabel.swift; sourceTree = "<group>"; };
 		4FEF63582B6BDCD500BA2032 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4FEF635E2B6BDF9200BA2032 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		4FEF63602B6E043E00BA2032 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				4F7744FD2B6631DF00741931 /* CGEvent+.swift */,
 				4FEF633F2B67F72F00BA2032 /* Logger.swift */,
 				4FEF63542B6BCE5500BA2032 /* Constants.swift */,
+				4FEF63602B6E043E00BA2032 /* UserDefaults+.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FEF63342B6646EB00BA2032 /* SimulatorApp.swift in Sources */,
+				4FEF63612B6E043E00BA2032 /* UserDefaults+.swift in Sources */,
 				4FEF63422B67F98C00BA2032 /* AppService.swift in Sources */,
 				4F7744FE2B6631DF00741931 /* CGEvent+.swift in Sources */,
 				4F7744FC2B6631AF00741931 /* TrackpadScrollBehavior.swift in Sources */,

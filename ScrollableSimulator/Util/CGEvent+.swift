@@ -9,12 +9,12 @@ func getXScrollQuantity(from event: CGEvent) -> Int64 {
     event.getIntegerValueField(.scrollWheelEventPointDeltaAxis2)
 }
 
-func getYScrollQuantityForLineBase(from event: CGEvent) -> Int64 {
-    event.getIntegerValueField(.scrollWheelEventFixedPtDeltaAxis1)
+func getYScrollAbsoluteQuantity(from event: CGEvent) -> Int64 {
+    event.getIntegerValueField(.scrollWheelEventDeltaAxis1)
 }
 
-func getXScrollQuantityForLineBase(from event: CGEvent) -> Int64 {
-    event.getIntegerValueField(.scrollWheelEventFixedPtDeltaAxis2)
+func getXScrollAbsoluteQuantity(from event: CGEvent) -> Int64 {
+    event.getIntegerValueField(.scrollWheelEventDeltaAxis2)
 }
 
 func isBeganScroll(from event: CGEvent) -> Bool {
@@ -35,6 +35,10 @@ func isBeginContinuousScroll(from event: CGEvent) -> Bool {
 
 func isEndContinuousScroll(from event: CGEvent) -> Bool {
     event.getIntegerValueField(.scrollWheelEventMomentumPhase) == CGMomentumScrollPhase.end.rawValue
+}
+
+func isValidScrollPhase(for event: CGEvent) -> Bool {
+    event.getIntegerValueField(.scrollWheelEventMomentumPhase) != CGMomentumScrollPhase.none.rawValue || event.getIntegerValueField(.scrollWheelEventScrollPhase) != 0
 }
 
 func makeLeftMouseDown(baseEvent: CGEvent) -> CGEvent? {

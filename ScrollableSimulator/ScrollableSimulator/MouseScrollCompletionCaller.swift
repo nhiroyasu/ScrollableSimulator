@@ -3,13 +3,13 @@ import CoreGraphics
 import Combine
 
 class MouseScrollCompletionCaller {
-    private let TIMEOUT_TIME: Double = 0.2
+    private let TIMEOUT_TIME: Double = 0.1
     private var eventQueue: [CGEvent] = []
     private var timeoutSubject: PassthroughSubject<Void, Never>?
     private var cancellable: AnyCancellable?
-    private var scrollCompletionHandler: () -> Void = {}
+    private var scrollCompletionHandler: (CGEvent?) -> Void = { _ in }
 
-    func initialize(scrollCompletionHandler: @escaping () -> Void) {
+    func initialize(scrollCompletionHandler: @escaping (CGEvent?) -> Void) {
         eventQueue = []
         self.scrollCompletionHandler = scrollCompletionHandler
         timeoutSubject = .init()
@@ -19,27 +19,24 @@ class MouseScrollCompletionCaller {
         )
         .sink(
             receiveCompletion: { [weak self] result in
-                self?.scrollCompletionHandler()
-                self?.reset()
+                guard let self else { return }
+                self.scrollCompletionHandler(eventQueue.last)
+                self.reset()
             },
             receiveValue: { _ in }
         )
     }
 
-    func send(event: CGEvent) {
-        guard let copyEvent = event.copy() else { return }
+    func push(scrollEvent: CGEvent) {
+        guard let copyEvent = scrollEvent.copy() else { return }
         eventQueue.append(copyEvent)
         timeoutSubject?.send()
-    }
-
-    func isInitialized() -> Bool {
-        timeoutSubject != nil && cancellable != nil
     }
 
     private func reset() {
         eventQueue = []
         timeoutSubject = nil
         cancellable = nil
-        scrollCompletionHandler = {}
+        scrollCompletionHandler = { _ in }
     }
 }

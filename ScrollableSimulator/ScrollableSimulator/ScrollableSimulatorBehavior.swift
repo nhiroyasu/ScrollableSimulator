@@ -28,12 +28,12 @@ class ScrollableSimulatorBehavior {
     ) -> Unmanaged<CGEvent>? {
         log(scrollWheelEvent: event)
 
-        if isContinuousScroll(from: event) {
-            // use trackpad
-            return trackpadScrollBehavior.mutateForDragging(proxy: proxy, type: type, event: event, refcon: refcon)
+        if isValidScrollPhase(for: event) {
+            // use trackpad or magic mouse etc.
+            return trackpadScrollBehavior.imitateDragging(proxy: proxy, type: type, event: event, refcon: refcon)
         } else {
-            // use mouse
-            return mouseScrollBehavior.mutateForDragging(proxy: proxy, type: type, event: event, refcon: refcon)
+            // use mouse.
+            return mouseScrollBehavior.imitateDragging(proxy: proxy, type: type, event: event, refcon: refcon)
         }
     }
 
@@ -41,12 +41,14 @@ class ScrollableSimulatorBehavior {
         #if DEBUG
         print(
             String(
-                format: "at: %ld\tpixelY: %d\tpixelX: %d\tfixedDeltaY: %.2f\tfixedDeltaX: %.2f\tmomentum: %d\tphase: %d\tcount: %d\tinstant: %d\tisContinuous: %d",
+                format: "at: %ld\tpixelY: %d\tpixelX: %d\tfixedDeltaY: %.2f\tfixedDeltaX: %.2f\tdeltaY: %d\tdeltaX: %d\tmomentum: %d\tphase: %d\tcount: %d\tinstant: %d\tisContinuous: %d",
                 scrollWheelEvent.timestamp,
                 scrollWheelEvent.getIntegerValueField(.scrollWheelEventPointDeltaAxis1),
                 scrollWheelEvent.getIntegerValueField(.scrollWheelEventPointDeltaAxis2),
                 scrollWheelEvent.getDoubleValueField(.scrollWheelEventFixedPtDeltaAxis1),
                 scrollWheelEvent.getDoubleValueField(.scrollWheelEventFixedPtDeltaAxis2),
+                scrollWheelEvent.getIntegerValueField(.scrollWheelEventDeltaAxis1),
+                scrollWheelEvent.getIntegerValueField(.scrollWheelEventDeltaAxis2),
                 scrollWheelEvent.getIntegerValueField(.scrollWheelEventMomentumPhase),
                 scrollWheelEvent.getIntegerValueField(.scrollWheelEventScrollPhase),
                 scrollWheelEvent.getIntegerValueField(.scrollWheelEventScrollCount),
