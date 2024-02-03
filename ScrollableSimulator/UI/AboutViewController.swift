@@ -12,4 +12,8 @@ class AboutViewController: NSViewController {
     @IBAction func didClickGitHubLabel(_ sender: Any) {
         NSWorkspace.shared.open(Constants.gitHub)
     }
+
+    @IBAction func didClickTermsOfUseAndPrivacyPolicy(_ sender: Any) {
+        NSWorkspace.shared.open(Constants.termOfUseAndPrivacyPolicy)
+    }
 }

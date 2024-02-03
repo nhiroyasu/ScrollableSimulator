@@ -345,10 +345,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P4z-9d-nis">
-                                <rect key="frame" x="154" y="73" width="142" height="154"/>
+                                <rect key="frame" x="147" y="64" width="157" height="172"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mAU-as-o8l">
-                                        <rect key="frame" x="6" y="48" width="131" height="106"/>
+                                        <rect key="frame" x="13" y="66" width="131" height="106"/>
                                         <subviews>
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXC-Nv-o6g">
                                                 <rect key="frame" x="33" y="42" width="64" height="64"/>
@@ -398,10 +398,10 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R9M-aQ-NGI">
-                                        <rect key="frame" x="0.0" y="0.0" width="142" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="157" height="50"/>
                                         <subviews>
                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HbG-r8-Lf9" customClass="LinkLabel" customModule="Scrollable_Simulator" customModuleProvider="target">
-                                                <rect key="frame" x="51" y="18" width="41" height="14"/>
+                                                <rect key="frame" x="58" y="36" width="41" height="14"/>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="t3z-bn-OD8">
                                                         <connections>
@@ -415,8 +415,23 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UTp-rc-EKf" customClass="LinkLabel" customModule="Scrollable_Simulator" customModuleProvider="target">
+                                                <rect key="frame" x="-2" y="18" width="161" height="14"/>
+                                                <gestureRecognizers>
+                                                    <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="fW1-We-icg">
+                                                        <connections>
+                                                            <action selector="didClickTermsOfUseAndPrivacyPolicy:" target="gbj-7p-Vbf" id="PPv-cu-pna"/>
+                                                        </connections>
+                                                    </clickGestureRecognizer>
+                                                </gestureRecognizers>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Terms of Use &amp; Privacy Policy" id="90p-X7-x4a">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uZ5-uC-I86">
-                                                <rect key="frame" x="-2" y="0.0" width="146" height="14"/>
+                                                <rect key="frame" x="5" y="0.0" width="146" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="© 2024 Hiroyasu Niitsuma " id="c54-jQ-YCK">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -427,8 +442,10 @@
                                         <visibilityPriorities>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
