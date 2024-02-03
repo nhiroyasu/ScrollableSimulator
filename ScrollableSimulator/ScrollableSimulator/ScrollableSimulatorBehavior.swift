@@ -41,19 +41,16 @@ class ScrollableSimulatorBehavior {
         #if DEBUG
         print(
             String(
-                format: "at: %ld\tpixelY: %d\tpixelX: %d\tfixedDeltaY: %.2f\tfixedDeltaX: %.2f\tdeltaY: %d\tdeltaX: %d\tmomentum: %d\tphase: %d\tcount: %d\tinstant: %d\tisContinuous: %d",
+                format: "at: %ld\tpixelY: %d\tpixelX: %d\tfixedDeltaY: %.2f\tfixedDeltaX: %.2f\tmomentum: %d\tphase: %d\tisContinuous: %d\tpixelsPerLine: %.1f",
                 scrollWheelEvent.timestamp,
                 scrollWheelEvent.getIntegerValueField(.scrollWheelEventPointDeltaAxis1),
                 scrollWheelEvent.getIntegerValueField(.scrollWheelEventPointDeltaAxis2),
                 scrollWheelEvent.getDoubleValueField(.scrollWheelEventFixedPtDeltaAxis1),
                 scrollWheelEvent.getDoubleValueField(.scrollWheelEventFixedPtDeltaAxis2),
-                scrollWheelEvent.getIntegerValueField(.scrollWheelEventDeltaAxis1),
-                scrollWheelEvent.getIntegerValueField(.scrollWheelEventDeltaAxis2),
                 scrollWheelEvent.getIntegerValueField(.scrollWheelEventMomentumPhase),
                 scrollWheelEvent.getIntegerValueField(.scrollWheelEventScrollPhase),
-                scrollWheelEvent.getIntegerValueField(.scrollWheelEventScrollCount),
-                scrollWheelEvent.getIntegerValueField(.scrollWheelEventInstantMouser),
-                scrollWheelEvent.getIntegerValueField(.scrollWheelEventIsContinuous)
+                scrollWheelEvent.getIntegerValueField(.scrollWheelEventIsContinuous),
+                CGEventSource(event: scrollWheelEvent)?.pixelsPerLine ?? 0.0
             )
         )
         #endif

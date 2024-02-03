@@ -14,14 +14,14 @@ class MouseScrollBehavior {
         refcon: UnsafeMutableRawPointer?
     ) -> Unmanaged<CGEvent>? {
         guard let immutableEvent = mutableEvent.copy() else { return Unmanaged.passUnretained(mutableEvent) }
-        let xScrollQuantity = getXScrollAbsoluteQuantity(from: immutableEvent)
-        let yScrollQuantity = getYScrollAbsoluteQuantity(from: immutableEvent)
+        let xScrollQuantity = getXScrollQuantity(from: immutableEvent)
+        let yScrollQuantity = getYScrollQuantity(from: immutableEvent)
 
         if xScrollQuantity == 0 && yScrollQuantity == 0 && !beganDraggingSequence {
             return nil
         }
 
-        if let completionSequenceTimer {
+        if completionSequenceTimer != nil {
             return nil
         }
 
@@ -39,8 +39,9 @@ class MouseScrollBehavior {
                 immutableEvent: immutableEvent,
                 xScrollQuantity: CGFloat(xScrollQuantity),
                 yScrollQuantity: CGFloat(yScrollQuantity),
-                magnification: UserDefaults.standard.mouseSensitivity
+                magnification: UserDefaults.standard.mouseSensitivity / 10.0
             )
+            mouseScrollCompletionCaller.push(scrollEvent: immutableEvent)
             return Unmanaged.passUnretained(dragEvent)
         }
     }
@@ -55,7 +56,7 @@ class MouseScrollBehavior {
         immutableEvent: CGEvent,
         xScrollQuantity: CGFloat,
         yScrollQuantity: CGFloat,
-        magnification: CGFloat = 0.8
+        magnification: CGFloat
     ) -> CGEvent {
         mutateEvent.type = .leftMouseDragged
         additionalDraggedPosition = .init(
@@ -66,7 +67,6 @@ class MouseScrollBehavior {
             x: immutableEvent.location.x + additionalDraggedPosition.x,
             y: immutableEvent.location.y + additionalDraggedPosition.y
         )
-        mouseScrollCompletionCaller.push(scrollEvent: immutableEvent)
         return mutateEvent
     }
 
@@ -74,15 +74,21 @@ class MouseScrollBehavior {
         var timerCount = 0
         let invalidatedTimerCount = 5
         let interval = 0.01
+        let absoluteBufferValue: CGFloat = {
+            if additionalDraggedPosition.y < 10.0 && additionalDraggedPosition.x < 10.0 {
+                return 5
+            }
+            return 1
+        }()
         let bufferPositionX: CGFloat = { [self] in
             if self.additionalDraggedPosition.x == 0 { return 0 }
-            if self.additionalDraggedPosition.x < 0 { return -1 }
-            return 1
+            if self.additionalDraggedPosition.x < 0 { return absoluteBufferValue * -1.0 }
+            return absoluteBufferValue
         }()
         let bufferPositionY: CGFloat = { [self] in
             if self.additionalDraggedPosition.y == 0 { return 0 }
-            if self.additionalDraggedPosition.y < 0 { return -1 }
-            return 1
+            if self.additionalDraggedPosition.y < 0 { return absoluteBufferValue * -1 }
+            return absoluteBufferValue
         }()
         completionSequenceTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] timer in
             guard let self else {
