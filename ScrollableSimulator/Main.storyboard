@@ -165,23 +165,23 @@
             <objects>
                 <viewController title="Settings" id="k5C-HS-6S0" customClass="SettingViewController" customModule="Scrollable_Simulator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="2UE-9r-tdM">
-                        <rect key="frame" x="0.0" y="0.0" width="490" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="YHN-44-oeH" userLabel="Container View">
-                                <rect key="frame" x="16" y="16" width="458" height="268"/>
+                                <rect key="frame" x="16" y="16" width="418" height="268"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVw-D3-jWl">
-                                        <rect key="frame" x="0.0" y="110" width="458" height="158"/>
+                                        <rect key="frame" x="0.0" y="66" width="418" height="202"/>
                                         <subviews>
                                             <box title="General" translatesAutoresizingMaskIntoConstraints="NO" id="4KK-gw-BRX">
-                                                <rect key="frame" x="-3" y="88" width="464" height="70"/>
+                                                <rect key="frame" x="-3" y="132" width="424" height="70"/>
                                                 <view key="contentView" id="sD5-gU-4uF">
-                                                    <rect key="frame" x="20" y="21" width="424" height="16"/>
+                                                    <rect key="frame" x="20" y="21" width="384" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i4r-hE-fJJ">
-                                                            <rect key="frame" x="-2" y="-1" width="426" height="18"/>
+                                                            <rect key="frame" x="-2" y="-1" width="386" height="18"/>
                                                             <buttonCell key="cell" type="check" title="Launch at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zfV-ho-lOU">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" textStyle="body" name=".SFNS-Regular"/>
@@ -202,16 +202,47 @@
                                                 <font key="titleFont" usesAppearanceFont="YES"/>
                                             </box>
                                             <box title="Mouse" translatesAutoresizingMaskIntoConstraints="NO" id="hNt-Mi-OxD">
-                                                <rect key="frame" x="-3" y="-4" width="464" height="88"/>
+                                                <rect key="frame" x="-3" y="-4" width="424" height="132"/>
                                                 <view key="contentView" id="2Ct-Pi-M4E">
-                                                    <rect key="frame" x="20" y="21" width="424" height="34"/>
+                                                    <rect key="frame" x="20" y="21" width="384" height="78"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lwo-Jj-jRp">
-                                                            <rect key="frame" x="0.0" y="0.0" width="424" height="34"/>
+                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lwo-Jj-jRp">
+                                                            <rect key="frame" x="0.0" y="0.0" width="384" height="78"/>
                                                             <subviews>
+                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UEw-Nq-r5r">
+                                                                    <rect key="frame" x="0.0" y="50" width="365" height="28"/>
+                                                                    <subviews>
+                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="34S-9n-3VO">
+                                                                            <rect key="frame" x="0.0" y="4" width="16" height="22"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="16" id="6eh-Ht-xdW"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="v3b-gB-i7b"/>
+                                                                            </constraints>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="exclamationmark.triangle" catalog="system" id="4f3-EZ-fdl"/>
+                                                                        </imageView>
+                                                                        <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A4Y-J8-pOc">
+                                                                            <rect key="frame" x="18" y="0.0" width="349" height="28"/>
+                                                                            <textFieldCell key="cell" controlSize="small" id="o9m-xg-vv9">
+                                                                                <font key="font" metaFont="smallSystem"/>
+                                                                                <string key="title">We apologize, but the mouse may not be very comfortable to use.
+We recommend using a trackpad if possible.</string>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                    </subviews>
+                                                                    <visibilityPriorities>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                    </visibilityPriorities>
+                                                                    <customSpacing>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                    </customSpacing>
+                                                                </stackView>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-e8-9rT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="424" height="34"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="384" height="34"/>
                                                                     <subviews>
                                                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sA7-mD-0Vk">
                                                                             <rect key="frame" x="-2" y="9" width="67" height="16"/>
@@ -222,10 +253,10 @@
                                                                             </textFieldCell>
                                                                         </textField>
                                                                         <customView horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="OE2-a5-oZg">
-                                                                            <rect key="frame" x="71" y="0.0" width="353" height="34"/>
+                                                                            <rect key="frame" x="71" y="0.0" width="313" height="34"/>
                                                                             <subviews>
-                                                                                <slider horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="bCX-FN-aL0">
-                                                                                    <rect key="frame" x="-2" y="16" width="357" height="20"/>
+                                                                                <slider horizontalHuggingPriority="249" verticalHuggingPriority="752" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="bCX-FN-aL0">
+                                                                                    <rect key="frame" x="-2" y="16" width="317" height="20"/>
                                                                                     <sliderCell key="cell" controlSize="small" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="5" tickMarkPosition="above" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="linear" id="K5E-GU-5cD"/>
                                                                                     <connections>
                                                                                         <action selector="didChangeMouseSensitivity:" target="k5C-HS-6S0" id="M5h-eT-exW"/>
@@ -240,7 +271,7 @@
                                                                                     </textFieldCell>
                                                                                 </textField>
                                                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-qf-UZ6">
-                                                                                    <rect key="frame" x="329" y="0.0" width="26" height="14"/>
+                                                                                    <rect key="frame" x="289" y="0.0" width="26" height="14"/>
                                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Fast" id="ibO-M6-3cC">
                                                                                         <font key="font" metaFont="smallSystem"/>
                                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -273,8 +304,10 @@
                                                             </subviews>
                                                             <visibilityPriorities>
                                                                 <integer value="1000"/>
+                                                                <integer value="1000"/>
                                                             </visibilityPriorities>
                                                             <customSpacing>
+                                                                <real value="3.4028234663852886e+38"/>
                                                                 <real value="3.4028234663852886e+38"/>
                                                             </customSpacing>
                                                         </stackView>
@@ -328,7 +361,7 @@
                 <customObject id="4ut-Hw-ymF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="AUI-2G-cqe"/>
             </objects>
-            <point key="canvasLocation" x="722" y="588"/>
+            <point key="canvasLocation" x="716" y="644"/>
         </scene>
         <!--Abount-->
         <scene sceneID="vdI-L6-f9z">
@@ -471,6 +504,7 @@
     </scenes>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>
+        <image name="exclamationmark.triangle" catalog="system" width="16" height="15"/>
         <image name="gearshape" catalog="system" width="21" height="21"/>
         <image name="questionmark.circle" catalog="system" width="20" height="20"/>
     </resources>
