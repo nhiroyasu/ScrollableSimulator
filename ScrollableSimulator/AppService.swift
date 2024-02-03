@@ -17,7 +17,11 @@ class AppService {
         }
     }
 
-    func didBecomeActive() {}
+    func didBecomeActive() {
+        NSApplication.shared.windows.forEach {
+            $0.makeKeyAndOrderFront(nil)
+        }
+    }
 
     func terminate() {
         scrollableSimulator?.deactivate()
