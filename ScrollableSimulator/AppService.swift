@@ -19,7 +19,9 @@ class AppService {
 
     func didBecomeActive() {
         NSApplication.shared.windows.forEach {
-            $0.makeKeyAndOrderFront(nil)
+            if $0.identifier?.rawValue == "main" {
+                $0.makeKeyAndOrderFront(nil)
+            }
         }
     }
 

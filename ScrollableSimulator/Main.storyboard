@@ -82,12 +82,6 @@
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="1eI-4O-JNW"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Zoom" id="ytW-ob-4Nd">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="performZoom:" target="Ady-hI-5gd" id="N7B-cg-lsv"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="R6o-c8-3aW"/>
                                         <menuItem title="Bring All to Front" id="Mt5-He-OKM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -114,7 +108,7 @@
         <scene sceneID="lpT-4Y-fhy">
             <objects>
                 <windowController storyboardIdentifier="main" showSeguePresentationStyle="single" id="CTg-AR-Cl4" sceneMemberID="viewController">
-                    <window key="window" title="Scrollable Simulator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ewh-JT-qi6">
+                    <window key="window" identifier="main" title="Scrollable Simulator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ewh-JT-qi6">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="604" y="462" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
