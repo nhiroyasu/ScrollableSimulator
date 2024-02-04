@@ -9,7 +9,9 @@ An app that enables scrolling functionality in Simulator.app.
 
 # Download
 ## AppStore
-https://apps.apple.com/us/app/scrollable-simulator/id6477324010
+<a href="https://apps.apple.com/us/app/scrollable-simulator/id6477324010" alt="app store">
+<img src="./GitHubAssets/mac_app_store_badge.svg" width=180 />
+</a>
 
 # Demo
 ![ScrollableSimulator_Demo](https://github.com/nhiroyasu/ScrollableSimulator/assets/40600280/12fe0522-29c5-4096-a4bb-5d73b1022b76)
