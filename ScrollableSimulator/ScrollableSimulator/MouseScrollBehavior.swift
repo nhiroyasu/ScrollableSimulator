@@ -31,9 +31,11 @@ class MouseScrollBehavior {
             mouseScrollCompletionCaller.initialize(scrollCompletionHandler: { [weak self] lastEvent in
                 self?.onCompletionScroll(proxy: proxy, lastEvent: lastEvent)
             })
+            mouseScrollCompletionCaller.push(scrollEvent: immutableEvent)
             let mouseDownEvent = convertMouseDownEvent(mutableEvent: mutableEvent)
             return Unmanaged.passUnretained(mouseDownEvent)
         } else {
+            mouseScrollCompletionCaller.push(scrollEvent: immutableEvent)
             let dragEvent = convertDragEvent(
                 mutateEvent: mutableEvent,
                 immutableEvent: immutableEvent,
@@ -41,7 +43,6 @@ class MouseScrollBehavior {
                 yScrollQuantity: CGFloat(yScrollQuantity),
                 magnification: UserDefaults.standard.mouseSensitivity / 10.0
             )
-            mouseScrollCompletionCaller.push(scrollEvent: immutableEvent)
             return Unmanaged.passUnretained(dragEvent)
         }
     }
@@ -72,7 +73,7 @@ class MouseScrollBehavior {
 
     private func onCompletionScroll(proxy: CGEventTapProxy, lastEvent: CGEvent?) {
         var timerCount = 0
-        let invalidatedTimerCount = 5
+        let invalidatedTimerCount = 10
         let interval = 0.01
         let absoluteBufferValue: CGFloat = {
             if additionalDraggedPosition.y < 10.0 && additionalDraggedPosition.x < 10.0 {
@@ -87,7 +88,7 @@ class MouseScrollBehavior {
         }()
         let bufferPositionY: CGFloat = { [self] in
             if self.additionalDraggedPosition.y == 0 { return 0 }
-            if self.additionalDraggedPosition.y < 0 { return absoluteBufferValue * -1 }
+            if self.additionalDraggedPosition.y < 0 { return absoluteBufferValue * -1.0 }
             return absoluteBufferValue
         }()
         completionSequenceTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] timer in
@@ -96,6 +97,7 @@ class MouseScrollBehavior {
                 return
             }
             guard let mouseDraggedEvent = lastEvent?.copy() else {
+                Logger.info("no lastEvent")
                 timer.invalidate()
                 self.resetDraggingSequence()
                 return
