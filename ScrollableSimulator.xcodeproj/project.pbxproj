@@ -40,6 +40,7 @@
 		4F8097DE2B65289000192C7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F8097E32B65289000192C7F /* ScrollableSimulator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScrollableSimulator.entitlements; sourceTree = "<group>"; };
 		4F8097E92B6528A000192C7F /* ScrollableSimulatorLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSimulatorLauncher.swift; sourceTree = "<group>"; };
+		4F8343E42BCB992500DAAF4D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		4FEF63312B66452E00BA2032 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4FEF63332B6646EB00BA2032 /* SimulatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorApp.swift; sourceTree = "<group>"; };
 		4FEF63352B6647B300BA2032 /* Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 		4F8097CE2B65288E00192C7F = {
 			isa = PBXGroup;
 			children = (
+				4F8343E42BCB992500DAAF4D /* PrivacyInfo.xcprivacy */,
 				4FEF63432B67FB7C00BA2032 /* README.md */,
 				4F8097D92B65288E00192C7F /* ScrollableSimulator */,
 				4F8097D82B65288E00192C7F /* Products */,
@@ -384,7 +386,7 @@
 				CODE_SIGN_ENTITLEMENTS = ScrollableSimulator/ScrollableSimulator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 2CMV7D36JC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -399,7 +401,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nhiro1109.debug.ScrollableSimulator;
 				PRODUCT_NAME = "Scrollable Simulator for debug";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -415,7 +417,7 @@
 				CODE_SIGN_ENTITLEMENTS = ScrollableSimulator/ScrollableSimulator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 2CMV7D36JC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -430,7 +432,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nhiro1109.ScrollableSimulator;
 				PRODUCT_NAME = "Scrollable Simulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
