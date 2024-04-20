@@ -8,7 +8,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let scrollableSimulator = ScrollableSimulatorLauncher()
         appService = .init(
             scrollableSimulator: scrollableSimulator,
-            scrollableSimulatorStatusSubject: scrollableSimulatorStatusSubject
+            scrollableSimulatorStatusSubject: scrollableSimulatorStatusSubject,
+            restartScrollableSimulatorSubject: restartScrollableSimulatorSubject
         )
     }
 

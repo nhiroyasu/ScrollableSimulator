@@ -71,6 +71,6 @@ class SettingViewController: NSViewController {
     }
 
     @objc private func restartSystem() {
-        restartScrollableSimulatorStatus.send(())
+        restartScrollableSimulatorSubject.send(())
     }
 }

@@ -8,4 +8,4 @@ enum ScrollableSimulatorStatus {
 }
 
 let scrollableSimulatorStatusSubject = CurrentValueSubject<ScrollableSimulatorStatus, Never>(.simulatorIsNotRunning)
-let restartScrollableSimulatorStatus = PassthroughSubject<Void, Never>()
+let restartScrollableSimulatorSubject = PassthroughSubject<Void, Never>()

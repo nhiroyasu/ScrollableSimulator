@@ -4,6 +4,7 @@ import Combine
 class AppService {
     private let scrollableSimulator: ScrollableSimulatorLauncher
     private let scrollableSimulatorStatusSubject: CurrentValueSubject<ScrollableSimulatorStatus, Never>
+    private let restartScrollableSimulatorSubject: PassthroughSubject<Void, Never>
     private var didTerminateAppObserver: NSObjectProtocol?
     private var didLaunchAppAppObserver: NSObjectProtocol?
     private var requestScrollableSimulatorStatusCancellation: AnyCancellable?
@@ -11,10 +12,12 @@ class AppService {
 
     init(
         scrollableSimulator: ScrollableSimulatorLauncher,
-        scrollableSimulatorStatusSubject: CurrentValueSubject<ScrollableSimulatorStatus, Never>
+        scrollableSimulatorStatusSubject: CurrentValueSubject<ScrollableSimulatorStatus, Never>,
+        restartScrollableSimulatorSubject: PassthroughSubject<Void, Never>
     ) {
         self.scrollableSimulator = scrollableSimulator
         self.scrollableSimulatorStatusSubject = scrollableSimulatorStatusSubject
+        self.restartScrollableSimulatorSubject = restartScrollableSimulatorSubject
         initialize()
     }
 
@@ -24,6 +27,8 @@ class AppService {
             observeDidTerminateApplication()
             if let pid = SimulatorApp.getSimulatorPID() {
                 launchScrollableSimulator(pid: pid)
+            } else {
+                scrollableSimulatorStatusSubject.send(.simulatorIsNotRunning)
             }
         } else {
             showAccessibilityPermissionsAlert()
@@ -78,10 +83,12 @@ class AppService {
     }
 
     private func observeRestartingScrollableSimulatorStatus() {
-        restartScrollableSimulatorCancellation = restartScrollableSimulatorStatus.sink { [weak self] in
+        restartScrollableSimulatorCancellation = restartScrollableSimulatorSubject.sink { [weak self] in
             guard let self else { return }
             if let pid = SimulatorApp.getSimulatorPID() {
                 self.launchScrollableSimulator(pid: pid)
+            } else {
+                scrollableSimulatorStatusSubject.send(.simulatorIsNotRunning)
             }
         }
     }
