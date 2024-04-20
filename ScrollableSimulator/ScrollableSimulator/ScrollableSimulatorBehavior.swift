@@ -16,27 +16,9 @@ class ScrollableSimulatorBehavior {
         case .scrollWheel:
             return eventBehaviorOnScrollWheel(proxy: proxy, type: type, event: event, refcon: refcon)
         case .rightMouseDown:
-            guard UserDefaults.standard.rightClickAsHomeShortcut,
-                  let keyboardType = CGEventSource(stateID: .hidSystemState)?.keyboardType else {
-                return Unmanaged.passUnretained(event)
-            }
-            event.type = .keyDown
-            event.flags = [.maskCommand, .maskShift]
-            event.setIntegerValueField(.keyboardEventKeycode, value: 0x04)  // H key
-            event.setIntegerValueField(.keyboardEventAutorepeat, value: 0)
-            event.setIntegerValueField(.keyboardEventKeyboardType, value: Int64(keyboardType))
-            return Unmanaged.passUnretained(event)
+            return eventBehaviorOnRightClickDown(event: event)
         case .rightMouseUp:
-            guard UserDefaults.standard.rightClickAsHomeShortcut,
-                  let keyboardType = CGEventSource(stateID: .hidSystemState)?.keyboardType else {
-                return Unmanaged.passUnretained(event)
-            }
-            event.type = .keyUp
-            event.flags = [.maskCommand, .maskShift]
-            event.setIntegerValueField(.keyboardEventKeycode, value: 0x04)  // H key
-            event.setIntegerValueField(.keyboardEventAutorepeat, value: 0)
-            event.setIntegerValueField(.keyboardEventKeyboardType, value: Int64(keyboardType))
-            return Unmanaged.passUnretained(event)
+            return eventBehaviorOnRightClickUp(event: event)
         default:
             return Unmanaged.passUnretained(event)
         }
@@ -57,6 +39,32 @@ class ScrollableSimulatorBehavior {
             // use mouse.
             return mouseScrollBehavior.imitateDragging(proxy: proxy, type: type, event: event, refcon: refcon)
         }
+    }
+
+    private func eventBehaviorOnRightClickDown(event: CGEvent) -> Unmanaged<CGEvent>? {
+        guard UserDefaults.standard.rightClickAsHomeShortcut,
+              let keyboardType = CGEventSource(stateID: .hidSystemState)?.keyboardType else {
+            return Unmanaged.passUnretained(event)
+        }
+        event.type = .keyDown
+        event.flags = [.maskCommand, .maskShift]
+        event.setIntegerValueField(.keyboardEventKeycode, value: 0x04)  // H key
+        event.setIntegerValueField(.keyboardEventAutorepeat, value: 0)
+        event.setIntegerValueField(.keyboardEventKeyboardType, value: Int64(keyboardType))
+        return Unmanaged.passUnretained(event)
+    }
+
+    private func eventBehaviorOnRightClickUp(event: CGEvent) -> Unmanaged<CGEvent>? {
+        guard UserDefaults.standard.rightClickAsHomeShortcut,
+              let keyboardType = CGEventSource(stateID: .hidSystemState)?.keyboardType else {
+            return Unmanaged.passUnretained(event)
+        }
+        event.type = .keyUp
+        event.flags = [.maskCommand, .maskShift]
+        event.setIntegerValueField(.keyboardEventKeycode, value: 0x04)  // H key
+        event.setIntegerValueField(.keyboardEventAutorepeat, value: 0)
+        event.setIntegerValueField(.keyboardEventKeyboardType, value: Int64(keyboardType))
+        return Unmanaged.passUnretained(event)
     }
 
     private func log(scrollWheelEvent: CGEvent) {
