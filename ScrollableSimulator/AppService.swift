@@ -25,6 +25,7 @@ class AppService {
         if AXIsProcessTrusted() {
             observeDidLaunchApplication()
             observeDidTerminateApplication()
+            observeRestartingScrollableSimulatorStatus()
             if let pid = SimulatorApp.getSimulatorPID() {
                 launchScrollableSimulator(pid: pid)
             } else {
