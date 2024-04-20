@@ -409,7 +409,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nhiro1109.debug.ScrollableSimulator;
 				PRODUCT_NAME = "Scrollable Simulator for debug";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -440,7 +440,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nhiro1109.ScrollableSimulator;
 				PRODUCT_NAME = "Scrollable Simulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
