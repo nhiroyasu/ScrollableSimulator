@@ -14,4 +14,17 @@ extension UserDefaults {
             self.setValue(newValue, forKey: "mouseSensitivity")
         }
     }
+
+    var rightClickAsHomeShortcut: Bool {
+        get {
+            if self.object(forKey: "rightClickAsHomeShortcut") == nil {
+                return true
+            } else {
+                return self.bool(forKey: "rightClickAsHomeShortcut")
+            }
+        }
+        set {
+            self.setValue(newValue, forKey: "rightClickAsHomeShortcut")
+        }
+    }
 }

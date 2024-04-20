@@ -172,19 +172,19 @@
                                 <rect key="frame" x="16" y="16" width="418" height="320"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVw-D3-jWl">
-                                        <rect key="frame" x="0.0" y="90" width="418" height="230"/>
+                                        <rect key="frame" x="0.0" y="66" width="418" height="254"/>
                                         <subviews>
                                             <box title="General" translatesAutoresizingMaskIntoConstraints="NO" id="4KK-gw-BRX">
-                                                <rect key="frame" x="-3" y="132" width="424" height="98"/>
+                                                <rect key="frame" x="-3" y="132" width="424" height="122"/>
                                                 <view key="contentView" id="sD5-gU-4uF">
-                                                    <rect key="frame" x="20" y="21" width="384" height="44"/>
+                                                    <rect key="frame" x="20" y="21" width="384" height="68"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OLL-ck-5fK">
-                                                            <rect key="frame" x="0.0" y="0.0" width="384" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="384" height="68"/>
                                                             <subviews>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ni-cf-Awm">
-                                                                    <rect key="frame" x="0.0" y="24" width="384" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="48" width="384" height="20"/>
                                                                     <subviews>
                                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kyi-h7-bwu">
                                                                             <rect key="frame" x="0.0" y="-1" width="16" height="22"/>
@@ -223,7 +223,7 @@
                                                                     </customSpacing>
                                                                 </stackView>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i4r-hE-fJJ">
-                                                                    <rect key="frame" x="-2" y="-1" width="119" height="18"/>
+                                                                    <rect key="frame" x="-2" y="23" width="119" height="18"/>
                                                                     <buttonCell key="cell" type="check" title="Launch at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zfV-ho-lOU">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" textStyle="body" name=".SFNS-Regular"/>
@@ -232,12 +232,24 @@
                                                                         <binding destination="k5C-HS-6S0" name="value" keyPath="launchAtLogin.isEnabled" id="Qvm-vb-SJ2"/>
                                                                     </connections>
                                                                 </button>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="adO-lM-IsV">
+                                                                    <rect key="frame" x="-2" y="-1" width="324" height="18"/>
+                                                                    <buttonCell key="cell" type="check" title="Set right-click as the Home shortcut (⌘ + ⇧ + H)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QJA-fm-Joz">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="didTapRightClickAsHomeShortcutCheckBox:" target="k5C-HS-6S0" id="mb1-sl-F6S"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <visibilityPriorities>
                                                                 <integer value="1000"/>
                                                                 <integer value="1000"/>
+                                                                <integer value="1000"/>
                                                             </visibilityPriorities>
                                                             <customSpacing>
+                                                                <real value="3.4028234663852886e+38"/>
                                                                 <real value="3.4028234663852886e+38"/>
                                                                 <real value="3.4028234663852886e+38"/>
                                                             </customSpacing>
@@ -408,6 +420,7 @@ We recommend using a trackpad if possible.</string>
                     </view>
                     <connections>
                         <outlet property="mouseSensitivitySlider" destination="bCX-FN-aL0" id="WpK-Yx-Al7"/>
+                        <outlet property="rightClickAsHomeShortcutCheckBox" destination="adO-lM-IsV" id="qfM-ls-KtW"/>
                         <outlet property="systemStatusButton" destination="ZKq-AN-Wvz" id="sEb-D3-dVh"/>
                         <outlet property="systemStatusImageView" destination="Kyi-h7-bwu" id="K4Z-pk-7fa"/>
                         <outlet property="systemStatusLabel" destination="6hr-N7-mi0" id="rcE-EO-yni"/>

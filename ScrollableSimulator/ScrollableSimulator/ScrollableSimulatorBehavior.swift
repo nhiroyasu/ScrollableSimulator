@@ -15,6 +15,28 @@ class ScrollableSimulatorBehavior {
         switch type {
         case .scrollWheel:
             return eventBehaviorOnScrollWheel(proxy: proxy, type: type, event: event, refcon: refcon)
+        case .rightMouseDown:
+            guard UserDefaults.standard.rightClickAsHomeShortcut,
+                  let keyboardType = CGEventSource(stateID: .hidSystemState)?.keyboardType else {
+                return Unmanaged.passUnretained(event)
+            }
+            event.type = .keyDown
+            event.flags = [.maskCommand, .maskShift]
+            event.setIntegerValueField(.keyboardEventKeycode, value: 0x04)  // H key
+            event.setIntegerValueField(.keyboardEventAutorepeat, value: 0)
+            event.setIntegerValueField(.keyboardEventKeyboardType, value: Int64(keyboardType))
+            return Unmanaged.passUnretained(event)
+        case .rightMouseUp:
+            guard UserDefaults.standard.rightClickAsHomeShortcut,
+                  let keyboardType = CGEventSource(stateID: .hidSystemState)?.keyboardType else {
+                return Unmanaged.passUnretained(event)
+            }
+            event.type = .keyUp
+            event.flags = [.maskCommand, .maskShift]
+            event.setIntegerValueField(.keyboardEventKeycode, value: 0x04)  // H key
+            event.setIntegerValueField(.keyboardEventAutorepeat, value: 0)
+            event.setIntegerValueField(.keyboardEventKeyboardType, value: Int64(keyboardType))
+            return Unmanaged.passUnretained(event)
         default:
             return Unmanaged.passUnretained(event)
         }

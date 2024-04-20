@@ -6,12 +6,18 @@ class SettingViewController: NSViewController {
     @objc dynamic var launchAtLogin = LaunchAtLogin.kvo
     @IBOutlet weak var systemStatusImageView: NSImageView!
     @IBOutlet weak var systemStatusLabel: NSTextField!
+    @IBOutlet weak var systemStatusButton: NSButton!
+    @IBOutlet weak var rightClickAsHomeShortcutCheckBox: NSButton! {
+        didSet {
+            rightClickAsHomeShortcutCheckBox.state = UserDefaults.standard.rightClickAsHomeShortcut ? .on : .off
+        }
+    }
     @IBOutlet weak var mouseSensitivitySlider: NSSlider! {
         didSet {
             mouseSensitivitySlider.doubleValue = UserDefaults.standard.mouseSensitivity
         }
     }
-    @IBOutlet weak var systemStatusButton: NSButton!
+
     private var scrollableSimulatorStatusCancellation: AnyCancellable?
 
     override func viewDidLoad() {
@@ -53,6 +59,10 @@ class SettingViewController: NSViewController {
         }
     }
 
+    @IBAction func didTapRightClickAsHomeShortcutCheckBox(_ sender: Any) {
+        UserDefaults.standard.rightClickAsHomeShortcut = rightClickAsHomeShortcutCheckBox.state == .on
+    }
+    
     @IBAction func didChangeMouseSensitivity(_ sender: Any) {
         UserDefaults.standard.mouseSensitivity = mouseSensitivitySlider.doubleValue
     }
