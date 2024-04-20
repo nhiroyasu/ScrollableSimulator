@@ -2,7 +2,7 @@ import Cocoa
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-    private var appService: AppService!
+    private var appService: AppService?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let scrollableSimulator = ScrollableSimulatorLauncher()
@@ -11,14 +11,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             scrollableSimulatorStatusSubject: scrollableSimulatorStatusSubject,
             restartScrollableSimulatorSubject: restartScrollableSimulatorSubject
         )
+        appService?.didFinishLaunch()
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
-        appService.didBecomeActive()
+        appService?.didBecomeActive()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        appService.terminate()
+        appService?.terminate()
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {

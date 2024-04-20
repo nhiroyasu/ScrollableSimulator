@@ -19,10 +19,9 @@ class AppService {
         self.scrollableSimulator = scrollableSimulator
         self.scrollableSimulatorStatusSubject = scrollableSimulatorStatusSubject
         self.restartScrollableSimulatorSubject = restartScrollableSimulatorSubject
-        initialize()
     }
 
-    private func initialize() {
+    func didFinishLaunch() {
         if AXIsProcessTrusted() {
             observeDidLaunchApplication()
             observeDidTerminateApplication()
