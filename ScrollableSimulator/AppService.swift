@@ -62,7 +62,7 @@ class AppService {
     private func observeDidLaunchApplication() {
         didLaunchAppAppObserver = NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didLaunchApplicationNotification, object: nil, queue: .main, using: { [weak self] notification in
             guard let self else { return }
-            if isSimulator(for: notification), let pid = getSimulatorPID(for: notification) {
+            if notification.isSimulator(), let pid = notification.getSimulatorPID() {
                 launchScrollableSimulator(pid: pid)
             }
         })
@@ -71,7 +71,7 @@ class AppService {
     private func observeDidTerminateApplication() {
         didTerminateAppObserver = NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: .main, using: { [weak self] notification in
             guard let self else { return }
-            if isSimulator(for: notification) {
+            if notification.isSimulator() {
                 terminateScrollableSimulator()
             }
         })
@@ -84,20 +84,6 @@ class AppService {
                 self.launchScrollableSimulator(pid: pid)
             }
         }
-    }
-
-    private func isSimulator(for notification: Notification) -> Bool {
-        guard let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication else {
-            return false
-        }
-        return app.bundleIdentifier == SIMULATOR_BUNDLE_ID
-    }
-
-    private func getSimulatorPID(for notification: Notification) -> pid_t? {
-        guard let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication else {
-            return nil
-        }
-        return app.processIdentifier
     }
 
     private func showAlertForFailedLaunching(retryHandler: () -> Void) {
