@@ -1,11 +1,24 @@
 import Cocoa
+import Combine
 
 class AppService {
-    private var scrollableSimulator: ScrollableSimulatorLauncher?
+    private let scrollableSimulator: ScrollableSimulatorLauncher
+    private let scrollableSimulatorStatusSubject: CurrentValueSubject<ScrollableSimulatorStatus, Never>
     private var didTerminateAppObserver: NSObjectProtocol?
     private var didLaunchAppAppObserver: NSObjectProtocol?
+    private var requestScrollableSimulatorStatusCancellation: AnyCancellable?
+    private var restartScrollableSimulatorCancellation: AnyCancellable?
 
-    func initialize() {
+    init(
+        scrollableSimulator: ScrollableSimulatorLauncher,
+        scrollableSimulatorStatusSubject: CurrentValueSubject<ScrollableSimulatorStatus, Never>
+    ) {
+        self.scrollableSimulator = scrollableSimulator
+        self.scrollableSimulatorStatusSubject = scrollableSimulatorStatusSubject
+        initialize()
+    }
+
+    private func initialize() {
         if AXIsProcessTrusted() {
             observeDidLaunchApplication()
             observeDidTerminateApplication()
@@ -26,18 +39,24 @@ class AppService {
     }
 
     func terminate() {
-        scrollableSimulator?.deactivate()
+        terminateScrollableSimulator()
     }
 
     private func launchScrollableSimulator(pid: pid_t) {
-        scrollableSimulator = .init(simulatorPID: pid)
         do {
-            try scrollableSimulator?.activate()
+            try scrollableSimulator.activate(simulatorPID: pid)
+            scrollableSimulatorStatusSubject.send(.active)
         } catch {
+            scrollableSimulatorStatusSubject.send(.error)
             showAlertForFailedLaunching(retryHandler: {
                 launchScrollableSimulator(pid: pid)
             })
         }
+    }
+
+    private func terminateScrollableSimulator() {
+        scrollableSimulator.deactivate()
+        scrollableSimulatorStatusSubject.send(.simulatorIsNotRunning)
     }
 
     private func observeDidLaunchApplication() {
@@ -53,9 +72,18 @@ class AppService {
         didTerminateAppObserver = NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: .main, using: { [weak self] notification in
             guard let self else { return }
             if isSimulator(for: notification) {
-                scrollableSimulator?.deactivate()
+                terminateScrollableSimulator()
             }
         })
+    }
+
+    private func observeRestartingScrollableSimulatorStatus() {
+        restartScrollableSimulatorCancellation = restartScrollableSimulatorStatus.sink { [weak self] in
+            guard let self else { return }
+            if let pid = SimulatorApp.getSimulatorPID() {
+                self.launchScrollableSimulator(pid: pid)
+            }
+        }
     }
 
     private func isSimulator(for notification: Notification) -> Bool {

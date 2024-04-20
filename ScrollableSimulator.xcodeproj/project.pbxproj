@@ -15,6 +15,8 @@
 		4F8097DB2B65288E00192C7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8097DA2B65288E00192C7F /* AppDelegate.swift */; };
 		4F8097DF2B65289000192C7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F8097DE2B65289000192C7F /* Assets.xcassets */; };
 		4F8097EA2B6528A000192C7F /* ScrollableSimulatorLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8097E92B6528A000192C7F /* ScrollableSimulatorLauncher.swift */; };
+		4F8343EE2BD3C46E00DAAF4D /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8343ED2BD3C46E00DAAF4D /* Notification+.swift */; };
+		4F8343F02BD3CFE600DAAF4D /* CombineSubjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8343EF2BD3CFE600DAAF4D /* CombineSubjects.swift */; };
 		4FEF63322B66452E00BA2032 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FEF63312B66452E00BA2032 /* Main.storyboard */; };
 		4FEF63342B6646EB00BA2032 /* SimulatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF63332B6646EB00BA2032 /* SimulatorApp.swift */; };
 		4FEF63362B6647B300BA2032 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF63352B6647B300BA2032 /* Accessibility.swift */; };
@@ -41,6 +43,8 @@
 		4F8097E32B65289000192C7F /* ScrollableSimulator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScrollableSimulator.entitlements; sourceTree = "<group>"; };
 		4F8097E92B6528A000192C7F /* ScrollableSimulatorLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSimulatorLauncher.swift; sourceTree = "<group>"; };
 		4F8343E42BCB992500DAAF4D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		4F8343ED2BD3C46E00DAAF4D /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
+		4F8343EF2BD3CFE600DAAF4D /* CombineSubjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineSubjects.swift; sourceTree = "<group>"; };
 		4FEF63312B66452E00BA2032 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4FEF63332B6646EB00BA2032 /* SimulatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorApp.swift; sourceTree = "<group>"; };
 		4FEF63352B6647B300BA2032 /* Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
@@ -92,8 +96,10 @@
 				4F8097DA2B65288E00192C7F /* AppDelegate.swift */,
 				4FEF63372B6649C900BA2032 /* AppInformation.swift */,
 				4FEF63412B67F98C00BA2032 /* AppService.swift */,
+				4F8343ED2BD3C46E00DAAF4D /* Notification+.swift */,
 				4FEF63332B6646EB00BA2032 /* SimulatorApp.swift */,
 				4FEF63352B6647B300BA2032 /* Accessibility.swift */,
+				4F8343EF2BD3CFE600DAAF4D /* CombineSubjects.swift */,
 				4FEF63492B6BCCD700BA2032 /* UI */,
 				4FEF632C2B66418100BA2032 /* Util */,
 				4FEF632B2B66415F00BA2032 /* ScrollableSimulator */,
@@ -237,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8343F02BD3CFE600DAAF4D /* CombineSubjects.swift in Sources */,
 				4FEF63342B6646EB00BA2032 /* SimulatorApp.swift in Sources */,
 				4FEF63612B6E043E00BA2032 /* UserDefaults+.swift in Sources */,
 				4FEF63422B67F98C00BA2032 /* AppService.swift in Sources */,
@@ -244,6 +251,7 @@
 				4F7744FC2B6631AF00741931 /* TrackpadScrollBehavior.swift in Sources */,
 				4FEF635F2B6BDF9200BA2032 /* SettingViewController.swift in Sources */,
 				4F7744FA2B662D8000741931 /* MouseScrollCompletionCaller.swift in Sources */,
+				4F8343EE2BD3C46E00DAAF4D /* Notification+.swift in Sources */,
 				4F7745002B66336300741931 /* MouseScrollBehavior.swift in Sources */,
 				4F7744F62B65ED4E00741931 /* ScrollableSimulatorBehavior.swift in Sources */,
 				4FEF63402B67F72F00BA2032 /* Logger.swift in Sources */,

@@ -8,13 +8,7 @@ class ScrollableSimulatorLauncher {
     private let runLoopMode: CFRunLoopMode = .defaultMode
     private var runLoopSource: CFRunLoopSource?
 
-    private let simulatorPID: pid_t
-
-    init(simulatorPID: pid_t) {
-        self.simulatorPID = simulatorPID
-    }
-
-    func activate() throws {
+    func activate(simulatorPID: pid_t) throws {
         if let runLoopSource {
             if CFRunLoopContainsSource(runLoop, runLoopSource, runLoopMode) {
                 CFRunLoopRemoveSource(runLoop, runLoopSource, runLoopMode)

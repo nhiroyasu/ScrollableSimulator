@@ -2,10 +2,14 @@ import Cocoa
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-    private let appService: AppService = .init()
+    private var appService: AppService!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        appService.initialize()
+        let scrollableSimulator = ScrollableSimulatorLauncher()
+        appService = .init(
+            scrollableSimulator: scrollableSimulator,
+            scrollableSimulatorStatusSubject: scrollableSimulatorStatusSubject
+        )
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
