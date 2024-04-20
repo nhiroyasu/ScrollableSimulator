@@ -7,6 +7,7 @@ class AppService {
     private let restartScrollableSimulatorSubject: PassthroughSubject<Void, Never>
     private var didTerminateAppObserver: NSObjectProtocol?
     private var didLaunchAppAppObserver: NSObjectProtocol?
+    private var didActivateAppObserver: NSObjectProtocol?
     private var requestScrollableSimulatorStatusCancellation: AnyCancellable?
     private var restartScrollableSimulatorCancellation: AnyCancellable?
 
@@ -25,6 +26,7 @@ class AppService {
         if AXIsProcessTrusted() {
             observeDidLaunchApplication()
             observeDidTerminateApplication()
+            observeDidActivateApplication()
             observeRestartingScrollableSimulatorStatus()
             if let pid = SimulatorApp.getSimulatorPID() {
                 launchScrollableSimulator(pid: pid)
@@ -45,7 +47,7 @@ class AppService {
     }
 
     func terminate() {
-        terminateScrollableSimulator()
+        scrollableSimulator.deactivate()
     }
 
     private func launchScrollableSimulator(pid: pid_t) {
@@ -58,11 +60,6 @@ class AppService {
                 launchScrollableSimulator(pid: pid)
             })
         }
-    }
-
-    private func terminateScrollableSimulator() {
-        scrollableSimulator.deactivate()
-        scrollableSimulatorStatusSubject.send(.simulatorIsNotRunning)
     }
 
     private func observeDidLaunchApplication() {
@@ -78,7 +75,17 @@ class AppService {
         didTerminateAppObserver = NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: .main, using: { [weak self] notification in
             guard let self else { return }
             if notification.isSimulator() {
-                terminateScrollableSimulator()
+                scrollableSimulator.deactivate()
+                scrollableSimulatorStatusSubject.send(.simulatorIsNotRunning)
+            }
+        })
+    }
+
+    private func observeDidActivateApplication() {
+        didActivateAppObserver = NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didActivateApplicationNotification, object: nil, queue: .main, using: { [weak self] notification in
+            guard let self else { return }
+            if notification.isSimulator() {
+                scrollableSimulator.recoverIfNeeded()
             }
         })
     }

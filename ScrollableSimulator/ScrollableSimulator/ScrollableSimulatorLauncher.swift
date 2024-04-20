@@ -7,12 +7,14 @@ class ScrollableSimulatorLauncher {
     private let runLoop: CFRunLoop = CFRunLoopGetMain()
     private let runLoopMode: CFRunLoopMode = .defaultMode
     private var runLoopSource: CFRunLoopSource?
+    private var port: CFMachPort?
 
     func activate(simulatorPID: pid_t) throws {
         if let runLoopSource {
             if CFRunLoopContainsSource(runLoop, runLoopSource, runLoopMode) {
                 CFRunLoopRemoveSource(runLoop, runLoopSource, runLoopMode)
                 self.runLoopSource = nil
+                self.port = nil
             }
         }
 
@@ -28,10 +30,18 @@ class ScrollableSimulatorLauncher {
         ) else {
             throw ScrollableSimulatorLauncherError.tapIsNotCreated
         }
-        runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, port, 0)
+        self.port = port
+        self.runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, port, 0)
         CFRunLoopAddSource(runLoop, runLoopSource, runLoopMode)
         CGEvent.tapEnable(tap: port, enable: true)
         Logger.info("ScrollableSimulator is active!")
+    }
+
+    func recoverIfNeeded() {
+        if let port, CGEvent.tapIsEnabled(tap: port) == false {
+            CGEvent.tapEnable(tap: port, enable: true)
+            Logger.info("Recovers ScrollableSimulator")
+        }
     }
 
     func deactivate() {
@@ -40,6 +50,7 @@ class ScrollableSimulatorLauncher {
             CFRunLoopRemoveSource(runLoop, runLoopSource, runLoopMode)
         }
         self.runLoopSource = nil
+        self.port = nil
         Logger.info("ScrollableSimulator is inactive")
     }
 }
