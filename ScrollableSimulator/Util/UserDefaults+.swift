@@ -17,14 +17,14 @@ extension UserDefaults {
 
     var rightClickAsHomeShortcut: Bool {
         get {
-            if self.object(forKey: "rightClickAsHomeShortcut") == nil {
-                return true
+            if self.object(forKey: "rightClickAsHomeShortcut_2") == nil {
+                return false
             } else {
-                return self.bool(forKey: "rightClickAsHomeShortcut")
+                return self.bool(forKey: "rightClickAsHomeShortcut_2")
             }
         }
         set {
-            self.setValue(newValue, forKey: "rightClickAsHomeShortcut")
+            self.setValue(newValue, forKey: "rightClickAsHomeShortcut_2")
         }
     }
 }
