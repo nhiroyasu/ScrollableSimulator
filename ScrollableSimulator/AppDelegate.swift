@@ -2,18 +2,24 @@ import Cocoa
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-    private let appService: AppService = .init()
+    private var appService: AppService?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        appService.initialize()
+        let scrollableSimulator = ScrollableSimulatorLauncher()
+        appService = .init(
+            scrollableSimulator: scrollableSimulator,
+            scrollableSimulatorStatusSubject: scrollableSimulatorStatusSubject,
+            restartScrollableSimulatorSubject: restartScrollableSimulatorSubject
+        )
+        appService?.didFinishLaunch()
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
-        appService.didBecomeActive()
+        appService?.didBecomeActive()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        appService.terminate()
+        appService?.terminate()
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
