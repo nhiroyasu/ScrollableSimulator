@@ -2,7 +2,8 @@ import Cocoa
 import Combine
 
 class AppService {
-    private let scrollableSimulator: ScrollableSimulatorLauncher
+    private let scrollableSimulatorLauncher: ScrollableSimulatorLauncher
+    private var scrollableSimulatorControl: ScrollableSimulatorControl?
     private let scrollableSimulatorStatusSubject: CurrentValueSubject<ScrollableSimulatorStatus, Never>
     private let restartScrollableSimulatorSubject: PassthroughSubject<Void, Never>
     private var didTerminateAppObserver: NSObjectProtocol?
@@ -12,11 +13,11 @@ class AppService {
     private var restartScrollableSimulatorCancellation: AnyCancellable?
 
     init(
-        scrollableSimulator: ScrollableSimulatorLauncher,
+        scrollableSimulatorLauncher: ScrollableSimulatorLauncher,
         scrollableSimulatorStatusSubject: CurrentValueSubject<ScrollableSimulatorStatus, Never>,
         restartScrollableSimulatorSubject: PassthroughSubject<Void, Never>
     ) {
-        self.scrollableSimulator = scrollableSimulator
+        self.scrollableSimulatorLauncher = scrollableSimulatorLauncher
         self.scrollableSimulatorStatusSubject = scrollableSimulatorStatusSubject
         self.restartScrollableSimulatorSubject = restartScrollableSimulatorSubject
     }
@@ -25,7 +26,6 @@ class AppService {
         if AXIsProcessTrusted() {
             observeDidLaunchApplication()
             observeDidTerminateApplication()
-            observeDidActivateApplication()
             observeRestartingScrollableSimulatorStatus()
             if let pid = SimulatorApp.getSimulatorPID() {
                 launchScrollableSimulator(pid: pid)
@@ -46,12 +46,18 @@ class AppService {
     }
 
     func terminate() {
-        scrollableSimulator.deactivate()
+        scrollableSimulatorControl?.deactivate()
+        scrollableSimulatorControl = nil
     }
 
     private func launchScrollableSimulator(pid: pid_t) {
+        if let scrollableSimulatorControl {
+            assertionFailure("ScrollableSimulatorControl is not nil when launching scrollableSimulator")
+            scrollableSimulatorControl.deactivate()
+            self.scrollableSimulatorControl = nil
+        }
         do {
-            try scrollableSimulator.activate(simulatorPID: pid)
+            scrollableSimulatorControl = try scrollableSimulatorLauncher.activate(simulatorPID: pid)
             scrollableSimulatorStatusSubject.send(.active)
         } catch {
             scrollableSimulatorStatusSubject.send(.error)
@@ -74,17 +80,9 @@ class AppService {
         didTerminateAppObserver = NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: .main, using: { [weak self] notification in
             guard let self else { return }
             if notification.isSimulator() {
-                scrollableSimulator.deactivate()
+                scrollableSimulatorControl?.deactivate()
+                scrollableSimulatorControl = nil
                 scrollableSimulatorStatusSubject.send(.simulatorIsNotRunning)
-            }
-        })
-    }
-
-    private func observeDidActivateApplication() {
-        didActivateAppObserver = NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didActivateApplicationNotification, object: nil, queue: .main, using: { [weak self] notification in
-            guard let self else { return }
-            if notification.isSimulator() {
-                scrollableSimulator.recoverIfNeeded()
             }
         })
     }

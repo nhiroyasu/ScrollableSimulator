@@ -10,7 +10,8 @@ class ScrollableSimulatorBehavior {
         proxy: CGEventTapProxy,
         type: CGEventType,
         event: CGEvent,
-        refcon: UnsafeMutableRawPointer?
+        refcon: UnsafeMutableRawPointer?,
+        onDisabledHandler: () -> Void
     ) -> Unmanaged<CGEvent>? {
         switch type {
         case .scrollWheel:
@@ -19,6 +20,14 @@ class ScrollableSimulatorBehavior {
             return eventBehaviorOnRightClickDown(event: event)
         case .rightMouseUp:
             return eventBehaviorOnRightClickUp(event: event)
+        case .tapDisabledByTimeout:
+            Logger.info("tapDisabledByTimeout")
+            onDisabledHandler()
+            return Unmanaged.passUnretained(event)
+        case .tapDisabledByUserInput:
+            Logger.info("tapDisabledByUserInput")
+            onDisabledHandler()
+            return Unmanaged.passUnretained(event)
         default:
             return Unmanaged.passUnretained(event)
         }

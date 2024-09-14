@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="CTg-AR-Cl4">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -195,7 +195,7 @@
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="checkmark.circle.fill" catalog="system" id="qYD-u9-a0D"/>
                                                                             <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                                                         </imageView>
-                                                                        <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6hr-N7-mi0">
+                                                                        <textField focusRingType="none" horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6hr-N7-mi0">
                                                                             <rect key="frame" x="22" y="2" width="216" height="16"/>
                                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="System running" id="CY8-j4-N8K">
                                                                                 <font key="font" textStyle="body" name=".SFNS-Regular"/>
@@ -278,14 +278,14 @@
                                                                     <rect key="frame" x="0.0" y="50" width="365" height="28"/>
                                                                     <subviews>
                                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="34S-9n-3VO">
-                                                                            <rect key="frame" x="0.0" y="3.5" width="16.5" height="22"/>
+                                                                            <rect key="frame" x="0.0" y="4" width="16" height="22"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="16" id="6eh-Ht-xdW"/>
                                                                                 <constraint firstAttribute="height" constant="16" id="v3b-gB-i7b"/>
                                                                             </constraints>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="exclamationmark.triangle" catalog="system" id="4f3-EZ-fdl"/>
                                                                         </imageView>
-                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A4Y-J8-pOc">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A4Y-J8-pOc">
                                                                             <rect key="frame" x="18" y="0.0" width="349" height="28"/>
                                                                             <textFieldCell key="cell" controlSize="small" id="o9m-xg-vv9">
                                                                                 <font key="font" metaFont="smallSystem"/>
@@ -308,7 +308,7 @@ We recommend using a trackpad if possible.</string>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-e8-9rT">
                                                                     <rect key="frame" x="0.0" y="0.0" width="384" height="34"/>
                                                                     <subviews>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sA7-mD-0Vk">
+                                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sA7-mD-0Vk">
                                                                             <rect key="frame" x="-2" y="9" width="67" height="16"/>
                                                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Sensitivity" id="fHJ-Ac-sZL">
                                                                                 <font key="font" textStyle="body" name=".SFNS-Regular"/>
@@ -326,7 +326,7 @@ We recommend using a trackpad if possible.</string>
                                                                                         <action selector="didChangeMouseSensitivity:" target="k5C-HS-6S0" id="M5h-eT-exW"/>
                                                                                     </connections>
                                                                                 </slider>
-                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kAU-uP-SJL">
+                                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kAU-uP-SJL">
                                                                                     <rect key="frame" x="-2" y="0.0" width="29" height="14"/>
                                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Slow" id="V4R-0S-c2J">
                                                                                         <font key="font" metaFont="smallSystem"/>
@@ -334,7 +334,7 @@ We recommend using a trackpad if possible.</string>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
                                                                                 </textField>
-                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-qf-UZ6">
+                                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-qf-UZ6">
                                                                                     <rect key="frame" x="289" y="0.0" width="26" height="14"/>
                                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Fast" id="ibO-M6-3cC">
                                                                                         <font key="font" metaFont="smallSystem"/>
@@ -456,7 +456,7 @@ We recommend using a trackpad if possible.</string>
                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TmT-Xt-sVg">
                                                 <rect key="frame" x="0.0" y="0.0" width="131" height="34"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WAI-RH-Ins">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WAI-RH-Ins">
                                                         <rect key="frame" x="-2" y="18" width="135" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Scrollable Simulator" id="f3P-6f-XLY">
                                                             <font key="font" textStyle="headline" name=".SFNS-Bold"/>
@@ -464,7 +464,7 @@ We recommend using a trackpad if possible.</string>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g4T-h4-JAj">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g4T-h4-JAj">
                                                         <rect key="frame" x="35" y="0.0" width="60" height="14"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="version (x)" id="nnP-Q8-uvL">
                                                             <font key="font" metaFont="smallSystem"/>
@@ -495,7 +495,7 @@ We recommend using a trackpad if possible.</string>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R9M-aQ-NGI">
                                         <rect key="frame" x="0.0" y="0.0" width="157" height="50"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HbG-r8-Lf9" customClass="LinkLabel" customModule="Scrollable_Simulator" customModuleProvider="target">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HbG-r8-Lf9" customClass="LinkLabel" customModule="Scrollable_Simulator" customModuleProvider="target">
                                                 <rect key="frame" x="58" y="36" width="41" height="14"/>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="t3z-bn-OD8">
@@ -510,7 +510,7 @@ We recommend using a trackpad if possible.</string>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UTp-rc-EKf" customClass="LinkLabel" customModule="Scrollable_Simulator" customModuleProvider="target">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UTp-rc-EKf" customClass="LinkLabel" customModule="Scrollable_Simulator" customModuleProvider="target">
                                                 <rect key="frame" x="-2" y="18" width="161" height="14"/>
                                                 <gestureRecognizers>
                                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="fW1-We-icg">
@@ -525,7 +525,7 @@ We recommend using a trackpad if possible.</string>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uZ5-uC-I86">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uZ5-uC-I86">
                                                 <rect key="frame" x="5" y="0.0" width="146" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="© 2024 Hiroyasu Niitsuma " id="c54-jQ-YCK">
                                                     <font key="font" metaFont="smallSystem"/>
@@ -573,8 +573,8 @@ We recommend using a trackpad if possible.</string>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>
         <image name="checkmark.circle.fill" catalog="system" width="15" height="15"/>
-        <image name="exclamationmark.triangle" catalog="system" width="17" height="15"/>
-        <image name="gearshape" catalog="system" width="21" height="21"/>
-        <image name="questionmark.circle" catalog="system" width="20" height="20"/>
+        <image name="exclamationmark.triangle" catalog="system" width="16" height="15"/>
+        <image name="gearshape" catalog="system" width="20" height="20"/>
+        <image name="questionmark.circle" catalog="system" width="19" height="19"/>
     </resources>
 </document>

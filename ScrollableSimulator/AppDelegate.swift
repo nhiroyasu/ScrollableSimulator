@@ -5,9 +5,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var appService: AppService?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let scrollableSimulator = ScrollableSimulatorLauncher()
+        let scrollableSimulatorLauncher = ScrollableSimulatorLauncher()
         appService = .init(
-            scrollableSimulator: scrollableSimulator,
+            scrollableSimulatorLauncher: scrollableSimulatorLauncher,
             scrollableSimulatorStatusSubject: scrollableSimulatorStatusSubject,
             restartScrollableSimulatorSubject: restartScrollableSimulatorSubject
         )
