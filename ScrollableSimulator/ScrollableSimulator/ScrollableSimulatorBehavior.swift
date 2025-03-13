@@ -1,8 +1,8 @@
 import Foundation
 import CoreGraphics
+import AppKit
 
 class ScrollableSimulatorBehavior {
-    private let eventSource = CGEventSource(stateID: .hidSystemState)
     private let trackpadScrollBehavior: TrackpadScrollBehavior = .init()
     private let mouseScrollBehavior: MouseScrollBehavior = .init()
 
@@ -41,12 +41,33 @@ class ScrollableSimulatorBehavior {
     ) -> Unmanaged<CGEvent>? {
         log(scrollWheelEvent: event)
 
+        if macOS15Later() && !isActiveSimulatorApp() {
+            return Unmanaged.passUnretained(event)
+        }
+
         if isValidScrollPhase(for: event) {
             // use trackpad or magic mouse etc.
             return trackpadScrollBehavior.imitateDragging(proxy: proxy, type: type, event: event, refcon: refcon)
         } else {
             // use mouse.
             return mouseScrollBehavior.imitateDragging(proxy: proxy, type: type, event: event, refcon: refcon)
+        }
+    }
+
+    private func isActiveSimulatorApp() -> Bool {
+        for app in NSWorkspace.shared.runningApplications {
+            if app.bundleIdentifier == SIMULATOR_BUNDLE_ID {
+                return app.isActive
+            }
+        }
+        return false
+    }
+
+    private func macOS15Later() -> Bool {
+        if #available(macOS 10.15, *) {
+            return true
+        } else {
+            return false
         }
     }
 
