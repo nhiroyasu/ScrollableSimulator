@@ -40,12 +40,24 @@ class TrackpadScrollBehavior {
             x: additionalDraggedPosition.x + CGFloat(xScrollQuantity),
             y: additionalDraggedPosition.y + CGFloat(yScrollQuantity)
         )
-        mutableEvent.location = .init(
-            x: immutableEvent.location.x + additionalDraggedPosition.x,
-            y: immutableEvent.location.y + additionalDraggedPosition.y
-        )
-        copyAndStoreEvent(immutableEvent)
-        return Unmanaged.passUnretained(mutableEvent)
+        if #available(macOS 15.0, *) {
+            if let newEvent = newCGEvent(baseEvent: mutableEvent, addPoint: additionalDraggedPosition) {
+                copyAndStoreEvent(immutableEvent)
+                return Unmanaged.passRetained(newEvent)
+            } else {
+                assertionFailure("Failed to create new CGEvent")
+                copyAndStoreEvent(immutableEvent)
+                return Unmanaged.passUnretained(mutableEvent)
+            }
+        } else {
+            mutableEvent.location = .init(
+                x: immutableEvent.location.x + additionalDraggedPosition.x,
+                y: immutableEvent.location.y + additionalDraggedPosition.y
+            )
+
+            copyAndStoreEvent(immutableEvent)
+            return Unmanaged.passUnretained(mutableEvent)
+        }
     }
 
     private func isNonInertialScroll(lastEvent: CGEvent?) -> Bool {
