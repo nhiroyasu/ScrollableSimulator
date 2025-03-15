@@ -41,7 +41,7 @@ class TrackpadScrollBehavior {
             y: additionalDraggedPosition.y + CGFloat(yScrollQuantity)
         )
         if #available(macOS 15.0, *) {
-            if let newEvent = newCGEvent(baseEvent: mutableEvent, addPoint: additionalDraggedPosition) {
+            if let newEvent = replaceLocationForCGEvent(baseEvent: mutableEvent, addPoint: additionalDraggedPosition) {
                 copyAndStoreEvent(immutableEvent)
                 return Unmanaged.passRetained(newEvent)
             } else {

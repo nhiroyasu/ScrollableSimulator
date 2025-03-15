@@ -97,7 +97,7 @@ func getXScrollQuantity(from cfData: CFData) -> Int32 {
 }
 
 @available(macOS 12.0, *)
-func newCGEvent(baseEvent: CGEvent, addPoint: CGPoint) -> CGEvent? {
+func replaceLocationForCGEvent(baseEvent: CGEvent, addPoint: CGPoint) -> CGEvent? {
     let globalLocationAddress: [UInt8] = [0x00, 0x02, 0xc0, 0x38]
     let localLocationAddress: [UInt8] = [0x00, 0x02, 0xc0, 0x39]
 

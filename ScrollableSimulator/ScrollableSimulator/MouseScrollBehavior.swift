@@ -36,14 +36,29 @@ class MouseScrollBehavior {
             return Unmanaged.passUnretained(mouseDownEvent)
         } else {
             mouseScrollCompletionCaller.push(scrollEvent: immutableEvent)
-            let dragEvent = convertDragEvent(
-                mutateEvent: mutableEvent,
-                immutableEvent: immutableEvent,
-                xScrollQuantity: CGFloat(xScrollQuantity),
-                yScrollQuantity: CGFloat(yScrollQuantity),
-                magnification: UserDefaults.standard.mouseSensitivity / 10.0
-            )
-            return Unmanaged.passUnretained(dragEvent)
+
+            if #available(macOS 15.0, *) {
+                if let dragEvent = buildDragEventForMacOS15(
+                    mutateEvent: mutableEvent,
+                    xScrollQuantity: CGFloat(xScrollQuantity),
+                    yScrollQuantity: CGFloat(yScrollQuantity),
+                    magnification: UserDefaults.standard.mouseSensitivity / 10.0
+                ) {
+                    return Unmanaged.passRetained(dragEvent)
+                } else {
+                    Logger.info("Failed to create new CGEvent")
+                    return Unmanaged.passUnretained(mutableEvent)
+                }
+            } else {
+                let dragEvent = convertDragEvent(
+                    mutateEvent: mutableEvent,
+                    immutableEvent: immutableEvent,
+                    xScrollQuantity: CGFloat(xScrollQuantity),
+                    yScrollQuantity: CGFloat(yScrollQuantity),
+                    magnification: UserDefaults.standard.mouseSensitivity / 10.0
+                )
+                return Unmanaged.passUnretained(dragEvent)
+            }
         }
     }
 
@@ -69,6 +84,21 @@ class MouseScrollBehavior {
             y: immutableEvent.location.y + additionalDraggedPosition.y
         )
         return mutateEvent
+    }
+
+    @available(macOS 15.0, *)
+    private func buildDragEventForMacOS15(
+        mutateEvent: CGEvent,
+        xScrollQuantity: CGFloat,
+        yScrollQuantity: CGFloat,
+        magnification: CGFloat
+    ) -> CGEvent? {
+        mutateEvent.type = .leftMouseDragged
+        additionalDraggedPosition = .init(
+            x: additionalDraggedPosition.x + xScrollQuantity * magnification,
+            y: additionalDraggedPosition.y + yScrollQuantity * magnification
+        )
+        return replaceLocationForCGEvent(baseEvent: mutateEvent, addPoint: additionalDraggedPosition)
     }
 
     private func onCompletionScroll(proxy: CGEventTapProxy, lastEvent: CGEvent?) {
@@ -112,11 +142,20 @@ class MouseScrollBehavior {
                     x: additionalDraggedPosition.x + bufferPositionX,
                     y: additionalDraggedPosition.y + bufferPositionY
                 )
-                mouseDraggedEvent.location = .init(
-                    x: mouseDraggedEvent.location.x + additionalDraggedPosition.x,
-                    y: mouseDraggedEvent.location.y + additionalDraggedPosition.y
-                )
-                mouseDraggedEvent.tapPostEvent(proxy)
+
+                if #available(macOS 15.0, *) {
+                    if let newEvent = replaceLocationForCGEvent(baseEvent: mouseDraggedEvent, addPoint: additionalDraggedPosition) {
+                        newEvent.tapPostEvent(proxy)
+                    } else {
+                        assertionFailure("Failed to create new CGEvent")
+                    }
+                } else {
+                    mouseDraggedEvent.location = .init(
+                        x: mouseDraggedEvent.location.x + additionalDraggedPosition.x,
+                        y: mouseDraggedEvent.location.y + additionalDraggedPosition.y
+                    )
+                    mouseDraggedEvent.tapPostEvent(proxy)
+                }
             } else {
                 // leftMouseUp
                 mouseDraggedEvent.type = .leftMouseUp
@@ -125,11 +164,20 @@ class MouseScrollBehavior {
                     x: additionalDraggedPosition.x + bufferPositionX,
                     y: additionalDraggedPosition.y + bufferPositionY
                 )
-                mouseDraggedEvent.location = .init(
-                    x: mouseDraggedEvent.location.x + additionalDraggedPosition.x,
-                    y: mouseDraggedEvent.location.y + additionalDraggedPosition.y
-                )
-                mouseDraggedEvent.tapPostEvent(proxy)
+
+                if #available(macOS 15.0, *) {
+                    if let newEvent = replaceLocationForCGEvent(baseEvent: mouseDraggedEvent, addPoint: additionalDraggedPosition) {
+                        newEvent.tapPostEvent(proxy)
+                    } else {
+                        assertionFailure("Failed to create new CGEvent")
+                    }
+                } else {
+                    mouseDraggedEvent.location = .init(
+                        x: mouseDraggedEvent.location.x + additionalDraggedPosition.x,
+                        y: mouseDraggedEvent.location.y + additionalDraggedPosition.y
+                    )
+                    mouseDraggedEvent.tapPostEvent(proxy)
+                }
 
                 // dragging sequence is end
                 timer.invalidate()
